@@ -1,12 +1,8 @@
 import os
 
-if not os.getenv('CI') and not os.getenv('HEROKU'):
-    from .development import *
-
-if os.getenv('CI') and not os.getenv('HEROKU'):
+if os.getenv('HEROKU') is not None:
+    from .production import *
+else:
     from django_envie.workroom import convertfiletovars
     convertfiletovars()
     from .development import *
-
-if os.getenv('HEROKU') is not None:
-    from .production import *
