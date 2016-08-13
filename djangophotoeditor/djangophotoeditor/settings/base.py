@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account'
+    'account',
+    'social.apps.django_app.default',
 ]
 
 # Use nose to run all tests
@@ -58,6 +59,16 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/photos'
+SOCIAL_AUTH_LOGIN_URL = '/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+SOCIAL_AUTH_FACEBOOK_KEY = os.getenv('SOCIAL_AUTH_FACEBOOK_KEY')
+
 ROOT_URLCONF = 'djangophotoeditor.urls'
 
 TEMPLATES = [
@@ -71,6 +82,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
