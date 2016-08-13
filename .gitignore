@@ -6,3 +6,4 @@ cover/
 .coveragerc
 *.pyc
 */*.pyc
+*.env.yml
