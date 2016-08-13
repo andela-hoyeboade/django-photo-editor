@@ -1,19 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-
-    }
-  }
-
-  render() {
-    return (
-      <div id="facebook-login">
-        <a className="btn btn-primary">Login with Facebook</a>
-      </div>
-    );
-  }
-
+const Login = () => {
+  return (
+    <div id="facebook-login">
+      <a href="/login/facebook/?next=/" className="btn btn-primary">
+          Login with Facebook
+        </a>
+    </div>
+  );
 }
+
+module.exports = Login;
